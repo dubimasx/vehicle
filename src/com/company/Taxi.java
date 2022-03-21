@@ -1,9 +1,10 @@
 package com.company;
 
-public class Taxi extends Vehicle {
+public class Taxi extends Vehicle implements Drivable, EngineStart, Refillable, SpeedLimit {
     private int pricePerKilometer;
     private int finalPrice;
-    public Taxi(String model, int capacity, int pricePerKilometer){
+
+    public Taxi(String model, int capacity, int pricePerKilometer) {
         super(model, capacity);
         this.pricePerKilometer = pricePerKilometer;
     }
@@ -41,5 +42,31 @@ public class Taxi extends Vehicle {
         else
             System.out.println("Ride price: " + finalPrice + " rub.");
 
+    }
+
+
+    @Override
+    public void startEngine() {
+        System.out.println("Taxi engine started");
+    }
+
+    @Override
+    public void stopEngine() {
+        System.out.println("Taxi engine stopped");
+    }
+
+    @Override
+    public void drive() {
+        System.out.println("Taxi is driving");
+    }
+
+    @Override
+    public void refuel() {
+        System.out.println("Taxi has been refueled");
+    }
+
+    @Override
+    public void showLimits() {
+        System.out.println("Speed limit for cars is " + carLimit + " km/h");
     }
 }

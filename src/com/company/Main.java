@@ -16,7 +16,7 @@ public class Main {
         Station station2 = new Station();
         station2.setName("Frunzenskaya");
         Route route = new Route(station, station2, 10);
-        Bus bus = new Bus("NewBus",9, "Electric");
+        Bus bus = new Bus("NewBus", 9, "Electric");
         bus.setRoute(route);
         System.out.println(route.getInitialStation().getName() + " " + route.getFinalStation().getName());
         Passenger pas1 = new Passenger("Slava");
@@ -50,8 +50,8 @@ public class Main {
         truck.setRoute(truckRoute);
         truck.showPassengers(truck.getPassengers());
         truck.showInfo();
-
-
+        bus.showLimits();
+        truck.cargoShipped();
     }
 }
 

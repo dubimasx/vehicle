@@ -3,7 +3,7 @@ package com.company;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Bus extends Vehicle {
+public class Bus extends Vehicle implements EngineStart, Drivable, Refillable, SpeedLimit {
     private String engineType;
 
     public String getEngineType() {
@@ -39,7 +39,7 @@ public class Bus extends Vehicle {
     @Override
     public boolean equals(Object o) {
         Bus bus = (Bus) o;
-        if (bus.getModel() == super.getModel() && bus.getCapacity() == super.getCapacity() && bus.getRoute() == super.getRoute() && bus.getEngineType() == this.getEngineType() ){
+        if (bus.getModel() == super.getModel() && bus.getCapacity() == super.getCapacity() && bus.getRoute() == super.getRoute() && bus.getEngineType() == this.getEngineType()) {
             return true;
         }
         return false;
@@ -49,5 +49,30 @@ public class Bus extends Vehicle {
     public int hashCode() {
         int result = Objects.hash(super.getModel(), super.getCapacity(), super.getRoute(), this.getEngineType());
         return result;
+    }
+
+    @Override
+    public void startEngine() {
+        System.out.println("Bus " + getEngineType() + " engine started");
+    }
+
+    @Override
+    public void stopEngine() {
+        System.out.println("Bus " + getEngineType() + " engine stopped");
+    }
+
+    @Override
+    public void drive() {
+        System.out.println("Bus is driving");
+    }
+
+    @Override
+    public void refuel() {
+        System.out.println("Bus has been refueled");
+    }
+
+    @Override
+    public void showLimits() {
+        System.out.println("Speed limit for buses is " + busLimit + " km/h");
     }
 }
