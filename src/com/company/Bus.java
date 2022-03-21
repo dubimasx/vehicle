@@ -5,6 +5,21 @@ import java.util.Objects;
 
 public class Bus extends Vehicle implements EngineStart, Drivable, Refillable, SpeedLimit {
     private String engineType;
+    public static final int maxNumberOfBuses = 100;
+    private static int busCount;
+    static
+    {
+        System.out.println("Hello, I am static initializer");
+    }
+
+    public static int getBusCount() {
+        return busCount;
+    }
+
+    public static void setBusCount(int busCount) {
+        Bus.busCount = busCount;
+    }
+
 
     public String getEngineType() {
         return engineType;
@@ -17,6 +32,11 @@ public class Bus extends Vehicle implements EngineStart, Drivable, Refillable, S
     public Bus(String model, int capacity, String engineType) {
         super(model, capacity);
         this.engineType = engineType;
+        busCount++;
+    }
+    public static void showBusCount(){
+        System.out.println("Maximal number of buses: " + maxNumberOfBuses);
+        System.out.println("Current number of buses: " + getBusCount());
     }
 
     @Override

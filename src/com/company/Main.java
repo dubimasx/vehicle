@@ -52,6 +52,7 @@ public class Main {
         truck.showInfo();
         bus.showLimits();
         truck.cargoShipped();
+        Bus.showBusCount();
     }
 }
 

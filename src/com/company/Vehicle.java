@@ -43,7 +43,7 @@ public abstract class Vehicle {
         }
     }
 
-    public void addPassenger(Passenger passenger) {
+    public final void addPassenger(Passenger passenger) {
         for (int i = 0; i < passengers.length; i++) {
             if (passengers[i] == null) {
                 passengers[i] = passenger;

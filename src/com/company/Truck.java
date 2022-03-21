@@ -1,6 +1,6 @@
 package com.company;
 
-public class Truck extends Vehicle implements Drivable, EngineStart, SpeedLimit, Refillable, Shipping {
+public final class Truck extends Vehicle implements Drivable, EngineStart, SpeedLimit, Refillable, Shipping {
     private String cargoType;
     private int maxCargoCapacity;
     private int currentCargoCapacity;
