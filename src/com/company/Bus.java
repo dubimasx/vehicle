@@ -1,11 +1,10 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Bus extends Vehicle implements EngineStart, Drivable, Refillable, SpeedLimit {
     private String engineType;
-    public static final int maxNumberOfBuses = 100;
+    public static final int MAX_NUMBER_OF_BUSES = 100;
     private static int busCount;
     static
     {
@@ -35,7 +34,7 @@ public class Bus extends Vehicle implements EngineStart, Drivable, Refillable, S
         busCount++;
     }
     public static void showBusCount(){
-        System.out.println("Maximal number of buses: " + maxNumberOfBuses);
+        System.out.println("Maximal number of buses: " + MAX_NUMBER_OF_BUSES);
         System.out.println("Current number of buses: " + getBusCount());
     }
 

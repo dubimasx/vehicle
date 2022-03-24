@@ -1,12 +1,23 @@
 package com.company;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class Truck extends Vehicle implements Drivable, EngineStart, SpeedLimit, Refillable, Shipping {
+    private static final Logger LOGGER = LogManager.getLogger(Truck.class);
     private String cargoType;
     private int maxCargoCapacity;
     private int currentCargoCapacity;
+    private boolean isActive;
+    public static final int MAX_PASSENGER_SPACE = 2;
 
     public Truck(String model, int capacity, String cargoType, int maxCargoCapacity) {
         super(model, capacity);
+        if (capacity > MAX_PASSENGER_SPACE) try {
+            throw new PassengerSpaceException("Too many passengers");
+        } catch (PassengerSpaceException e) {
+            LOGGER.error("test",e);
+        }
         this.cargoType = cargoType;
         this.maxCargoCapacity = maxCargoCapacity;
     }
@@ -37,61 +48,67 @@ public final class Truck extends Vehicle implements Drivable, EngineStart, Speed
     }
 
     public void addCargo(int cargo) {
-        if (cargo != 0 && cargo >= 0)
-            currentCargoCapacity += cargo;
+        if (cargo != 0 && cargo >= 0) currentCargoCapacity += cargo;
     }
 
 
     @Override
     public void showPassengers(Passenger[] pas) {
         if (pas != null) {
-            System.out.println("Drivers:");
+            LOGGER.info("Drivers:");
             for (Passenger i : pas) {
                 if (i != null) {
-                    System.out.println(i.getName());
+                    LOGGER.info(i.getName());
                 }
             }
         } else {
-            System.out.println("There is no drivers");
+            LOGGER.info("There is no drivers");
         }
     }
 
     @Override
     public void showInfo() {
-        System.out.println("Model: " + super.getModel());
-        System.out.println("Cargo type: " + getCargoType());
-        System.out.println("Maximal capacity: " + getMaxCargoCapacity() + " t.");
-        System.out.println("Current cargo capacity: " + getCurrentCargoCapacity() + " t.");
+        LOGGER.info("Model: " + super.getModel());
+        LOGGER.info("Cargo type: " + getCargoType());
+        LOGGER.info("Maximal capacity: " + getMaxCargoCapacity() + " t.");
+        LOGGER.info("Current cargo capacity: " + getCurrentCargoCapacity() + " t.");
 
     }
 
     @Override
     public void cargoShipped() {
-        System.out.println("Cargo " + getCargoType() + " was shipped");
+        LOGGER.info("Cargo " + getCargoType() + " was shipped");
     }
 
     @Override
     public void startEngine() {
-        System.out.println("Truck engine started");
+        try {
+            if (isActive) throw new EngineException("Engine is active");
+            LOGGER.info("Truck engine started");
+            isActive = true;
+        } catch (EngineException e) {
+            LOGGER.error(e);
+        }
     }
 
     @Override
     public void stopEngine() {
-        System.out.println("Truck engine stopped");
+        LOGGER.info("Truck engine stopped");
+        isActive = false;
     }
 
     @Override
     public void drive() {
-        System.out.println("Truck is driving");
+        LOGGER.info("Truck is driving");
     }
 
     @Override
     public void refuel() {
-        System.out.println("Truck has been refueled");
+        LOGGER.info("Truck has been refueled");
     }
 
     @Override
     public void showLimits() {
-        System.out.println("Speed limit for trucks is " + truckLimit + " km/h");
+        LOGGER.info("Speed limit for trucks is " + truckLimit + " km/h");
     }
 }

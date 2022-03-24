@@ -1,7 +1,17 @@
 package com.company;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+
 public class Main {
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
     public static Passenger[] showPassengers(Passenger[] pas) {
         for (Passenger i : pas) {
             if (i != null) {
@@ -11,7 +21,7 @@ public class Main {
         return pas;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PassengerException {
         Station station = new Station("Molodejnaya");
         Station station2 = new Station();
         station2.setName("Frunzenskaya");
@@ -53,6 +63,24 @@ public class Main {
         bus.showLimits();
         truck.cargoShipped();
         Bus.showBusCount();
+        //Passenger[] test = new Passenger[14];
+        //bus.setPassengers(test);
+        //truck.startEngine();
+        truck.startEngine();
+        truck.stopEngine();
+       // Truck testTruck = new Truck("TEST", 5, "People", 10);
+        //LOGGER.info("LOGGER INFO");
+       // LOGGER.error("LOGGER ERROR");
+        //LOGGER.debug("LOGGER DEBUG");
+        Truck testTruck = new Truck("TEST", 5, "TEST", 10);
+        LOGGER.info(testTruck.getPassengers());
+        LOGGER.info(testTruck.getCapacity());
+
+
+
+
+
+
     }
 }
 

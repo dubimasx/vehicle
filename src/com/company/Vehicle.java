@@ -44,11 +44,16 @@ public abstract class Vehicle {
     }
 
     public final void addPassenger(Passenger passenger) {
-        for (int i = 0; i < passengers.length; i++) {
-            if (passengers[i] == null) {
-                passengers[i] = passenger;
-                break;
+        try {
+            if (passenger == null) throw new PassengerException("Passenger is null");
+            for (int i = 0; i < passengers.length; i++) {
+                if (passengers[i] == null) {
+                    passengers[i] = passenger;
+                    break;
+                }
             }
+        } catch (PassengerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -56,9 +61,9 @@ public abstract class Vehicle {
         return passengers;
     }
 
-    public void setPassengers(Passenger[] passengers) {
+    public void setPassengers(Passenger[] passengers) throws PassengerException {
         if (capacity < passengers.length) {
-            throw new RuntimeException("Too many passengers");
+            throw new PassengerException("Too many passengers");
         }
         this.passengers = passengers;
     }
