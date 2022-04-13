@@ -1,4 +1,4 @@
-package com.company;
+package com.solvd;
 
 public class PassengerSpaceException extends Exception{
     public PassengerSpaceException() {

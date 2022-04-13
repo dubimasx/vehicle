@@ -1,4 +1,4 @@
-package com.company;
+package com.solvd;
 
 public interface Refillable {
     default void refuel() {

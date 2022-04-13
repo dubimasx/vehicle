@@ -1,6 +1,10 @@
-package com.company;
+package com.solvd;
 
-public class Taxi extends Vehicle implements Drivable, EngineStart, Refillable, SpeedLimit {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class Taxi extends Vehicle implements Drivable, IEngineStart, Refillable, SpeedLimit {
+    private static final Logger LOGGER = LogManager.getLogger(Taxi.class);
     private int pricePerKilometer;
     private int finalPrice;
 
@@ -34,39 +38,39 @@ public class Taxi extends Vehicle implements Drivable, EngineStart, Refillable, 
 
     @Override
     public void showInfo() {
-        System.out.println("Model: " + super.getModel());
-        System.out.println("Capacity: " + super.getCapacity());
-        System.out.println("Price per kilometer " + getPricePerKilometer());
+        LOGGER.info("Model: " + super.getModel());
+        LOGGER.info("Capacity: " + super.getCapacity());
+        LOGGER.info("Price per kilometer " + getPricePerKilometer());
         if (finalPrice == 0)
-            System.out.println("Ride did not end");
+            LOGGER.info("Ride did not end");
         else
-            System.out.println("Ride price: " + finalPrice + " rub.");
+            LOGGER.info("Ride price: " + finalPrice + " rub.");
 
     }
 
 
     @Override
     public void startEngine() {
-        System.out.println("Taxi engine started");
+        LOGGER.info("Taxi engine started");
     }
 
     @Override
     public void stopEngine() {
-        System.out.println("Taxi engine stopped");
+        LOGGER.info("Taxi engine stopped");
     }
 
     @Override
     public void drive() {
-        System.out.println("Taxi is driving");
+        LOGGER.info("Taxi is driving");
     }
 
     @Override
     public void refuel() {
-        System.out.println("Taxi has been refueled");
+        LOGGER.info("Taxi has been refueled");
     }
 
     @Override
     public void showLimits() {
-        System.out.println("Speed limit for cars is " + carLimit + " km/h");
+        LOGGER.info("Speed limit for cars is " + carLimit + " km/h");
     }
 }

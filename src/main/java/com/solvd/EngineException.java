@@ -1,4 +1,4 @@
-package com.company;
+package com.solvd;
 
 public class EngineException extends Exception{
     public EngineException() {

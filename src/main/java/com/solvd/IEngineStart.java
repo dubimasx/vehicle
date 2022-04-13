@@ -1,6 +1,7 @@
-package com.company;
+package com.solvd;
 
-public interface EngineStart {
+public interface IEngineStart {
+
     default void startEngine() {
         System.out.println("Engine started");
     }

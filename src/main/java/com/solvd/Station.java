@@ -1,14 +1,20 @@
-package com.company;
+package com.solvd;
 
-public class Passenger {
+public class Station {
     private String name;
-    public Passenger(String name){
+
+    public Station(String name) {
         this.name = name;
+    }
+
+    public Station() {
+
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }

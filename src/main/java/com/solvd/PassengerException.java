@@ -1,4 +1,4 @@
-package com.company;
+package com.solvd;
 
 public class PassengerException extends Exception {
     public PassengerException() {

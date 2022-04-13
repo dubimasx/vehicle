@@ -1,9 +1,9 @@
-package com.company;
+package com.solvd;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class Truck extends Vehicle implements Drivable, EngineStart, SpeedLimit, Refillable, Shipping {
+public final class Truck extends Vehicle implements Drivable, IEngineStart, SpeedLimit, Refillable, Shipping {
     private static final Logger LOGGER = LogManager.getLogger(Truck.class);
     private String cargoType;
     private int maxCargoCapacity;
@@ -52,19 +52,19 @@ public final class Truck extends Vehicle implements Drivable, EngineStart, Speed
     }
 
 
-    @Override
-    public void showPassengers(Passenger[] pas) {
-        if (pas != null) {
-            LOGGER.info("Drivers:");
-            for (Passenger i : pas) {
-                if (i != null) {
-                    LOGGER.info(i.getName());
-                }
-            }
-        } else {
-            LOGGER.info("There is no drivers");
-        }
-    }
+//    @Override
+//    public void showPassengers() {
+//        if (super.getPassengers() != null) {
+//            LOGGER.info("Drivers:");
+//            for (Passenger i : super.getPassengers()) {
+//                if (i != null) {
+//                    LOGGER.info(i.getName());
+//                }
+//            }
+//        } else {
+//            LOGGER.info("There is no drivers");
+//        }
+//    }
 
     @Override
     public void showInfo() {

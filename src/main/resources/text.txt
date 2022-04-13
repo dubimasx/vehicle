@@ -1,0 +1,1 @@
+Several Several Several Several third-party libraries provide utility methods for working with files. If you prefer the Apache Commons IO library, it's FileUtils class has several file manipulation utilities.

@@ -1,4 +1,4 @@
-package com.company;
+package com.solvd;
 
 public interface SpeedLimit {
     public static final int carLimit = 120;
