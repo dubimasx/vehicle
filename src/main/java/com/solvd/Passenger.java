@@ -1,5 +1,7 @@
 package com.solvd;
 
+import java.util.Objects;
+
 public class Passenger {
     private String name;
     public Passenger(String name){
@@ -11,5 +13,18 @@ public class Passenger {
     }
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Passenger)) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equals(name, passenger.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

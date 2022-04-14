@@ -1,5 +1,7 @@
 package com.solvd;
 
+import java.util.Objects;
+
 public class Route {
     private Station initialStation;
     private Station finalStation;
@@ -39,4 +41,16 @@ public class Route {
         this.finalStation = finalStation;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Route)) return false;
+        Route route = (Route) o;
+        return distance == route.distance && Objects.equals(initialStation, route.initialStation) && Objects.equals(finalStation, route.finalStation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(initialStation, finalStation, distance);
+    }
 }

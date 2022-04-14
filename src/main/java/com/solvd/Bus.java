@@ -1,7 +1,10 @@
 package com.solvd;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.exceptions.PassengerException;
+import com.solvd.interfaces.Drivable;
+import com.solvd.interfaces.IEngineStart;
+import com.solvd.interfaces.Refillable;
+import com.solvd.interfaces.SpeedLimit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +14,7 @@ public class Bus extends Vehicle implements IEngineStart, Drivable, Refillable, 
     private String engineType;
     public static final int MAX_NUMBER_OF_BUSES = 100;
     private static int busCount;
-    private List<Passenger> passengers;
+    private List<Passenger> passengers = new ArrayList<>();
 
     static {
         LOGGER.info("Hello, I am static initializer");

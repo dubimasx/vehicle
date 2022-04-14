@@ -1,25 +1,32 @@
 package com.solvd;
 
+import com.solvd.enums.CargoTypes;
+import com.solvd.enums.TruckTypes;
+import com.solvd.exceptions.EngineException;
+import com.solvd.exceptions.PassengerSpaceException;
+import com.solvd.interfaces.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
 public final class Truck extends Vehicle implements Drivable, IEngineStart, SpeedLimit, Refillable, Shipping {
     private static final Logger LOGGER = LogManager.getLogger(Truck.class);
-    private String cargoType;
-    private int maxCargoCapacity;
+    private CargoTypes cargoType;
+    private TruckTypes type;
     private int currentCargoCapacity;
     private boolean isActive;
     public static final int MAX_PASSENGER_SPACE = 2;
 
-    public Truck(String model, int capacity, String cargoType, int maxCargoCapacity) {
+    public Truck(String model, int capacity, CargoTypes cargoType, TruckTypes type) {
         super(model, capacity);
         if (capacity > MAX_PASSENGER_SPACE) try {
             throw new PassengerSpaceException("Too many passengers");
         } catch (PassengerSpaceException e) {
             LOGGER.error("test",e);
         }
+        this.type = type;
         this.cargoType = cargoType;
-        this.maxCargoCapacity = maxCargoCapacity;
     }
 
     public int getCurrentCargoCapacity() {
@@ -30,20 +37,11 @@ public final class Truck extends Vehicle implements Drivable, IEngineStart, Spee
         this.currentCargoCapacity = currentCargoCapacity;
     }
 
-
-    public int getMaxCargoCapacity() {
-        return maxCargoCapacity;
-    }
-
-    public void setMaxCargoCapacity(int maxCargoCapacity) {
-        this.maxCargoCapacity = maxCargoCapacity;
-    }
-
-    public String getCargoType() {
+    public CargoTypes getCargoType() {
         return cargoType;
     }
 
-    public void setCargoType(String cargoType) {
+    public void setCargoType(CargoTypes cargoType) {
         this.cargoType = cargoType;
     }
 
@@ -70,7 +68,6 @@ public final class Truck extends Vehicle implements Drivable, IEngineStart, Spee
     public void showInfo() {
         LOGGER.info("Model: " + super.getModel());
         LOGGER.info("Cargo type: " + getCargoType());
-        LOGGER.info("Maximal capacity: " + getMaxCargoCapacity() + " t.");
         LOGGER.info("Current cargo capacity: " + getCurrentCargoCapacity() + " t.");
 
     }
@@ -110,5 +107,27 @@ public final class Truck extends Vehicle implements Drivable, IEngineStart, Spee
     @Override
     public void showLimits() {
         LOGGER.info("Speed limit for trucks is " + truckLimit + " km/h");
+    }
+
+    public TruckTypes getType() {
+        return type;
+    }
+
+    public void setType(TruckTypes type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Truck)) return false;
+        if (!super.equals(o)) return false;
+        Truck truck = (Truck) o;
+        return currentCargoCapacity == truck.currentCargoCapacity && isActive == truck.isActive && Objects.equals(cargoType, truck.cargoType) && type == truck.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), cargoType, type, currentCargoCapacity, isActive);
     }
 }

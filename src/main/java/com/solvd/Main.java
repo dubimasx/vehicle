@@ -1,5 +1,10 @@
 package com.solvd;
 
+import com.solvd.enums.CargoTypes;
+import com.solvd.enums.TaxiTypes;
+import com.solvd.enums.TruckTypes;
+import com.solvd.exceptions.PassengerException;
+import com.solvd.interfaces.ILoad;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
@@ -109,8 +114,22 @@ public class Main {
             FileUtils.writeStringToFile(new File("target/text2.txt"), i + " ", StandardCharsets.UTF_8, true);
         }
         LOGGER.info(set.size());
+        Taxi taxi = new Taxi("test", 4, 20);
+        taxi.setType(TaxiTypes.COMFORT);
+        System.out.println(taxi.getType());
+        Truck truck1 = new Truck("test", 2, CargoTypes.FOOD, TruckTypes.LIGHTWEIGHT );
+        LOGGER.info(truck1.getCargoType() + " " + truck1.getType());
+        ILoad<Bus, Passenger> load = (b, p) -> {
+            b.getPassengers().add(p);
+            return b;
+        };
+        Passenger testPas = new Passenger("OLEG");
+        load.add(testBus1, testPas);
+        load.add(testBus1, pas1);
+        LOGGER.info(testBus1.getPassengers().get(0).getName());
 
+        }
 
     }
-}
+
 
