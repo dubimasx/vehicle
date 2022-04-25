@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Stream;
 
 
 public class Main {
@@ -43,6 +44,9 @@ public class Main {
 
         //FileUtils and StringUtils Task
         //FileService.writeUniqueWordsCountToFile("src/main/resources/text.txt", "target/text2.txt");
+
+        //Stream Task
+        //collectionStreamsTaskRun();
 
 
     }
@@ -164,5 +168,20 @@ public class Main {
         taskTaxi.addPassenger(lastDefaultPassenger);
         taskTaxi.addPassenger(vipPassenger);
         LOGGER.info(taskTaxi.getPassengersQueue());
+    }
+    private static void collectionStreamsTaskRun() {
+        Passenger james = new Passenger("James");
+        Passenger michael = new Passenger("Michael");
+        Passenger john = new Passenger("John");
+        List<Passenger> passengers = new ArrayList<>();
+        passengers.add(james);
+        passengers.add(michael);
+        passengers.add(john);
+        Stream<Passenger> stream = passengers.stream();
+        stream.forEach(p -> LOGGER.info(p.getName()));
+
+        Stream<Integer> randomNumbers = Stream.generate(() -> (new Random()).nextInt(100));
+        randomNumbers.limit(20).forEach(LOGGER::info);
+
     }
 }
